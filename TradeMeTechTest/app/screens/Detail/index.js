@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, ScrollView, RefreshControl } from 'react-native';
+import { StyleSheet, Image, View } from 'react-native';
 import { getListing } from '../../api';
 import { Title, Subheading, Card, Paragraph } from 'react-native-paper';
 import Colors from '../../res/colors';
@@ -44,9 +44,14 @@ export default class Detail extends Component {
     renderGallery = (photos) => {
         if (photos.length > 0) {
             return (
-                <Card.Cover
-                    source={{ uri: photos[0].Value.FullSize }}
-                    resizeMode='contain' />
+                <View style={{ alignItems: 'center', marginTop: 20, marginBottom: 20 }}>
+
+                    <Image
+                        source={{ uri: photos[0].Value.Gallery }}
+                        style={{ width: 207, height: 207 }}
+                        resizeMode='contain' />
+
+                </View>
             );
         }
     };
@@ -55,14 +60,7 @@ export default class Detail extends Component {
         const { ListingId = '', Title: title = '', Photos = [], Body = '' } = this.state.listing;
 
         return (
-            <ScrollView
-                style={styles.container}
-                refreshControl={
-                    <RefreshControl
-                        refreshing={this.state.isLoading}
-                        onRefresh={this.loadListing}
-                    />
-                }>
+            <View style={styles.container}>
 
                 <Card>
 
@@ -80,7 +78,7 @@ export default class Detail extends Component {
 
                 </Card>
 
-            </ScrollView>
+            </View>
         );
     }
 }
@@ -88,7 +86,6 @@ export default class Detail extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'white',
-        padding: 20
+        backgroundColor: 'white'
     }
 });
