@@ -47,7 +47,7 @@ export default class Detail extends Component {
                 <View style={{ alignItems: 'center', marginTop: 20, marginBottom: 20 }}>
 
                     <Image
-                        source={{ uri: photos[0].Value.Gallery }}
+                        source={{ uri: photos[0].Value.Large }}
                         style={{ width: 207, height: 207 }}
                         resizeMode='contain' />
 
