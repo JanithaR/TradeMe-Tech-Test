@@ -49,16 +49,16 @@ export default class CategoryScreen extends Component<Props> {
                 categories: JSON.parse(categories)
             });
         } else {
-            this.loadCategories();
+            this.loadCategories(cacheKey === 'Root' ? undefined : cacheKey);
         }
     };
 
-    loadCategories = async () => {
-        const category = this.props.navigation.getParam('category', {});
-        const categories = await getCategories(category.Number);
+    loadCategories = async (categoryNumber) => {
+        // const category = this.props.navigation.getParam('category', {});
+        const categories = await getCategories(categoryNumber);
 
         // cache
-        await AsyncStorage.setItem(category.Number, JSON.stringify(categories));
+        await AsyncStorage.setItem(categoryNumber ? categoryNumber : 'Root', JSON.stringify(categories));
 
         this.setState({
             isLoading: false,

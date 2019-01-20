@@ -1,7 +1,7 @@
 import Config from '../config';
 import config from '../config';
 
-export async function getCategories(categoryNumber = 0) {
+export async function getCategories(categoryNumber = '0') {
     try {
         const response = await fetch(`${Config.API_URL}${Config.CATEGORIES}${categoryNumber}.${Config.RESONSE_FORMAT}`);
 
