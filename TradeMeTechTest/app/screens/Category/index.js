@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, ActivityIndicator, ScrollView, RefreshControl, AsyncStorage } from 'react-native';
+import { View, StyleSheet, ActivityIndicator, ScrollView, RefreshControl, AsyncStorage, StatusBar } from 'react-native';
 import { getCategories } from '../../api';
 import { List } from 'react-native-paper';
 import Colors from '../../res/colors';
@@ -118,6 +118,11 @@ export default class CategoryScreen extends Component<Props> {
             return (
                 <View style={styles.containerActivity}>
 
+                    <StatusBar
+                        backgroundColor={Colors.tradeMeYellow}
+                        barStyle="light-content"
+                        animated={true} />
+
                     <ActivityIndicator
                         size='large'
                         color={Colors.tradeMeBlue} />
@@ -134,6 +139,11 @@ export default class CategoryScreen extends Component<Props> {
                             onRefresh={this.loadCategories}
                         />
                     }>
+
+                    <StatusBar
+                        backgroundColor={Colors.tradeMeYellow}
+                        barStyle="light-content"
+                        animated={true} />
 
                     <View>
 

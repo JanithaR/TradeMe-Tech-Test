@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Image, View } from 'react-native';
+import { StyleSheet, Image, View, StatusBar } from 'react-native';
 import { getListing } from '../../api';
 import { Title, Subheading, Card, Paragraph } from 'react-native-paper';
 import Colors from '../../res/colors';
@@ -65,7 +65,12 @@ export default class Detail extends Component {
         return (
             <View style={styles.container}>
 
-                <Card>
+                <StatusBar
+                    backgroundColor='white'
+                    barStyle="dark-content"
+                    animated={true} />
+
+                <Card elevation={0}>
 
                     {this.renderGallery(Photos)}
 
