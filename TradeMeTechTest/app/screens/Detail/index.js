@@ -14,12 +14,15 @@ export default class Detail extends Component {
         return {
             title: navigation.getParam('listing').Title,
             headerStyle: {
-                backgroundColor: Colors.tradeMeYellow
+                borderBottomWidth: 0,
+                elevation: 0,
+                backgroundColor: 'rgba(0, 0, 0, 0)'
             },
+            headerTransparent: true,
             headerTitleStyle: {
-                color: Colors.yellowHeaderTextColor
+                color: 'black'
             },
-            headerTintColor: Colors.yellowHeaderTextColor
+            headerTintColor: 'black',
         };
     };
 
@@ -86,6 +89,7 @@ export default class Detail extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'white'
+        backgroundColor: 'white',
+        paddingTop: 30
     }
 });

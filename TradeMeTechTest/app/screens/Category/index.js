@@ -16,14 +16,7 @@ export default class CategoryScreen extends Component<Props> {
         title = navigation.getParam('category') ? navigation.getParam('category').Name : 'Trade Me Tech Test - JanithaR';
 
         return {
-            title,
-            headerStyle: {
-                backgroundColor: Colors.tradeMeYellow
-            },
-            headerTitleStyle: {
-                color: Colors.yellowHeaderTextColor
-            },
-            headerTintColor: Colors.yellowHeaderTextColor
+            title
         };
     };
 

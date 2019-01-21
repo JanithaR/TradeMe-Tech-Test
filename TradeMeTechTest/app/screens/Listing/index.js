@@ -20,14 +20,7 @@ export default class ListingScreen extends Component<Props> {
         const title = navigation.getParam('category') ? navigation.getParam('category').Name : '...';
 
         return {
-            title,
-            headerStyle: {
-                backgroundColor: Colors.tradeMeYellow
-            },
-            headerTitleStyle: {
-                color: Colors.yellowHeaderTextColor
-            },
-            headerTintColor: Colors.yellowHeaderTextColor
+            title
         };
     };
 
