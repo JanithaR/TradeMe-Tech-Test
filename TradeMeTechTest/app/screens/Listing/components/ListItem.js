@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
-import { Image } from 'react-native';
-import { List, Colors } from 'react-native-paper';
+import { Image, View, StyleSheet } from 'react-native';
+import { List, Colors, Paragraph, Title } from 'react-native-paper';
 
 export default class ListItem extends PureComponent {
     renderThumb = item => {
@@ -21,6 +21,22 @@ export default class ListItem extends PureComponent {
         }
     };
 
+    renderBuyNow = item => {
+        const { HasBuyNow, BuyNowPrice } = item;
+
+        if (HasBuyNow) {
+            return (
+                <View style={{ alignItems: 'flex-end', marginRight: 5 }}>
+
+                    <Paragraph>Buy Now</Paragraph>
+
+                    <Title>${BuyNowPrice}</Title>
+
+                </View>
+            );
+        }
+    };
+
     getDescription = item => {
         const { PriceDisplay } = item;
 
@@ -35,8 +51,16 @@ export default class ListItem extends PureComponent {
                 title={item.Title}
                 description={this.getDescription(item)}
                 left={() => this.renderThumb(item)}
+                right={() => this.renderBuyNow(item)}
                 onPress={() => onPress(item)}
-            />
+                style={styles.listItem} />
         );
     }
 }
+
+const styles = StyleSheet.create({
+    listItem: {
+        borderBottomWidth: 1,
+        borderBottomColor: Colors.grey200
+    }
+});

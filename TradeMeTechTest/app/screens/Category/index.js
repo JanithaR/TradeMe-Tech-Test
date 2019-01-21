@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, ActivityIndicator, ScrollView, RefreshControl, AsyncStorage, StatusBar } from 'react-native';
 import { getCategories } from '../../api';
-import { List } from 'react-native-paper';
-import Colors from '../../res/colors';
+import { List, Colors } from 'react-native-paper';
+import AppColors from '../../res/colors';
 
 type Props = {};
 
@@ -119,13 +119,13 @@ export default class CategoryScreen extends Component<Props> {
                 <View style={styles.containerActivity}>
 
                     <StatusBar
-                        backgroundColor={Colors.tradeMeYellow}
+                        backgroundColor={AppColors.tradeMeYellow}
                         barStyle="light-content"
                         animated={true} />
 
                     <ActivityIndicator
                         size='large'
-                        color={Colors.tradeMeBlue} />
+                        color={AppColors.tradeMeBlue} />
 
                 </View>
             );
@@ -141,7 +141,7 @@ export default class CategoryScreen extends Component<Props> {
                     }>
 
                     <StatusBar
-                        backgroundColor={Colors.tradeMeYellow}
+                        backgroundColor={AppColors.tradeMeYellow}
                         barStyle="light-content"
                         animated={true} />
 
@@ -168,12 +168,12 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     accordion: {
-        backgroundColor: Colors.accordionBackgroundColor,
+        backgroundColor: Colors.grey200,
         borderBottomWidth: 1,
-        borderBottomColor: Colors.accordionBorderBottomColor
+        borderBottomColor: Colors.grey400
     },
     listItem: {
         borderBottomWidth: 1,
-        borderBottomColor: Colors.accordionBorderBottomColor
+        borderBottomColor: Colors.grey200
     }
 });
