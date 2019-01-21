@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { StyleSheet, Image, View, StatusBar } from 'react-native';
+import { StyleSheet, Image, View, StatusBar, Text, ScrollView } from 'react-native';
 import { getListing } from '../../api';
-import { Title, Subheading, Card, Paragraph } from 'react-native-paper';
-import Colors from '../../res/colors';
+import { Title, Subheading, Card, Paragraph, FAB, Colors, Divider, List } from 'react-native-paper';
+import AppColors from '../../res/colors';
 
 export default class Detail extends Component {
     state = {
@@ -12,7 +12,7 @@ export default class Detail extends Component {
 
     static navigationOptions = ({ navigation }) => {
         return {
-            title: navigation.getParam('listing').Title,
+            title: 'Item',
             headerStyle: {
                 borderBottomWidth: 0,
                 elevation: 0,
@@ -59,34 +59,73 @@ export default class Detail extends Component {
         }
     };
 
+    renderAttributes = (attributes) => {
+        if (attributes.length > 0) {
+
+            return (
+                <List.Section title="Attributes">
+
+                    {
+                        attributes.map(attribute => <List.Item
+                            title={attribute.DisplayName}
+                            right={() => <Text>{attribute.Value}</Text>}
+                            key={attribute.Name} />
+                        )
+                    }
+
+                </List.Section>
+            );
+        }
+    };
+
     render() {
-        const { ListingId = '', Title: title = '', Photos = [], Body = '' } = this.state.listing;
+        const { ListingId = '', Title: title = '', Photos = [], BuyNowPrice = '', Attributes = [] } = this.state.listing;
 
         return (
-            <View style={styles.container}>
+            <ScrollView>
 
-                <StatusBar
-                    backgroundColor='white'
-                    barStyle="dark-content"
-                    animated={true} />
+                <View style={styles.container}>
 
-                <Card elevation={0}>
+                    <StatusBar
+                        backgroundColor='white'
+                        barStyle="dark-content"
+                        animated={true} />
 
-                    {this.renderGallery(Photos)}
+                    <Card elevation={0}>
 
-                    <Card.Content>
+                        {this.renderGallery(Photos)}
 
-                        <Title>{title}</Title>
+                        <Card.Content>
 
-                        <Subheading>{ListingId}</Subheading>
+                            <View style={{ flexDirection: 'row', alignItems: 'baseline', marginBottom: 5 }}>
 
-                        <Paragraph>{Body}</Paragraph>
+                                <Title style={{ fontSize: 30 }}>{title}</Title>
 
-                    </Card.Content>
+                                <Subheading>({ListingId})</Subheading>
 
-                </Card>
+                            </View>
 
-            </View>
+                            <Title style={{ fontSize: 24, color: AppColors.tradeMeBlue, marginBottom: 5 }}>${BuyNowPrice}</Title>
+
+                            <Paragraph style={{ marginBottom: 10 }}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris aliquam luctus odio in molestie. Sed.</Paragraph>
+
+                            <Divider />
+
+                            {this.renderAttributes(Attributes)}
+
+                        </Card.Content>
+
+                    </Card>
+
+                    <FAB
+                        style={styles.fab}
+                        icon="shop"
+                        onPress={() => console.log('Pressed')}
+                        color='white' />
+
+                </View>
+
+            </ScrollView>
         );
     }
 }
@@ -96,5 +135,12 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: 'white',
         paddingTop: 30
+    },
+    fab: {
+        position: 'absolute',
+        margin: 16,
+        right: 0,
+        bottom: 300,
+        backgroundColor: AppColors.tradeMeBlue
     }
 });
