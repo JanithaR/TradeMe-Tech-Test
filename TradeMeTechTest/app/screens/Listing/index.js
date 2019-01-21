@@ -99,9 +99,14 @@ export default class ListingScreen extends Component<Props> {
         return (
             <View style={styles.container}>
 
-                <Searchbar
-                    placeholder="Search"
-                    onChangeText={this.onSearchChangeText} />
+                <View style={styles.searchBarWrapper}>
+
+                    <Searchbar
+                        placeholder="Search"
+                        onChangeText={this.onSearchChangeText}
+                        style={{ elevation: 0 }} />
+
+                </View>
 
                 <FlatList
                     data={this.getListData()}
@@ -120,5 +125,9 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: 'white'
+    },
+    searchBarWrapper: {
+        backgroundColor: Colors.tradeMeYellow,
+        padding: 5
     }
 });
