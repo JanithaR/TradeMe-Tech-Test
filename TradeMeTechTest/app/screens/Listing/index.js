@@ -87,6 +87,12 @@ export default class ListingScreen extends Component<Props> {
         );
     };
 
+    onSearchChangeText = searchPhrase => {
+        clearTimeout(this._searchTimeout);
+
+        this._searchTimeout = setTimeout(() => this.setState({ searchPhrase }), 350);
+    };
+
     render() {
         const { isLoading, searchPhrase } = this.state;
 
@@ -95,8 +101,7 @@ export default class ListingScreen extends Component<Props> {
 
                 <Searchbar
                     placeholder="Search"
-                    onChangeText={query => { this.setState({ searchPhrase: query }); }}
-                    value={searchPhrase} />
+                    onChangeText={this.onSearchChangeText} />
 
                 <FlatList
                     data={this.getListData()}
